@@ -4,5 +4,5 @@ const del = require("del"),
       config = require(path.resolve(__dirname,"..","config")).build;
 
 module.exports = function(){
-	return () => del([config.destination])
+	return () => del([config.destination],{force:true})
 }
