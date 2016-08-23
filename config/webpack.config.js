@@ -1,19 +1,23 @@
 "use strict";
-const path = require("path");
-
-console.log(path.resolve(__dirname,"..","src","js","boot.js"));
+import path from "path";
+import config from "./config";
 
 module.exports = {
-	entry: path.resolve(__dirname,"..","src","js","boot.js"),
-	output: {
-		path: path.resolve(__dirname,".."),
-		filename: "bundle.js"
-	},
-	module:{
-		loaders:[
-			{test: path.resolve(__dirname,"..","src"),
-			loader:"babel-loader"
-			}
-		]
-	}
+    entry: {
+        preload: path.resolve(config.js.target, config.js.rootFile)
+    },
+    output: {
+        path: path.resolve(__dirname, "..", "dist"),
+        publicPath: "../dist/",
+        filename: "[name].bundle.js",
+        chunkFilename: "[id].bundle.js"
+    },
+    module: {
+        loaders: [
+            {
+                test: path.resolve(__dirname, "..", "src"),
+                loader: "babel-loader"
+            }
+        ]
+    }
 };

@@ -2,4 +2,5 @@
 *.iml
 npm-debug.log
 dist
+target
 node_modules

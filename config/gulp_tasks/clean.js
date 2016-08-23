@@ -1,8 +1,8 @@
 "use strict";
-const del = require("del"),
-      path = require("path"),
-      config = require(path.resolve(__dirname,"..","config")).build;
+import del from "del";
+import path from "path";
+import config from "../config";
 
-module.exports = function(){
-	return () => del([config.destination],{force:true})
-}
+module.exports = function () {
+    return () => del.sync(config.build.destination, {force: true})
+};
