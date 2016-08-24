@@ -6,6 +6,6 @@
 require("../../src/scss/main.scss");
 
 import Point from "./Point";
-var body = document.querySelector("body");
+var body = document.querySelector("div#contents");
 body.textContent = `Good Point ${new Point(1,23)}`;
 

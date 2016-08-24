@@ -14,7 +14,9 @@ let packConfig = {
         chunkFilename: "[id].bundle.js"
     },
     plugins:[
-        new HtmlPlugin()
+        new HtmlPlugin({
+            template:path.resolve(__dirname,"..","src","pug","index.pug")
+        })
     ],
     module: {
         loaders: [
@@ -29,7 +31,11 @@ let packConfig = {
             {
                 test: /\.scss$/,
                 loaders: ["style", "css", "sass"]
-            }
+            },
+            {
+                test: /\.pug$/,
+                loader: 'jade'
+            },
         ]
     }
 };
