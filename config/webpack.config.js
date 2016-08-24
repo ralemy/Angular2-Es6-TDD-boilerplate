@@ -4,7 +4,7 @@ import config from "./config";
 
 module.exports = {
     entry: {
-        preload: path.resolve(config.js.target, config.js.rootFile)
+        app: path.resolve(config.js.target, config.js.rootFile)
     },
     output: {
         path: path.resolve(__dirname, "..", "dist"),

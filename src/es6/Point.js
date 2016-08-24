@@ -11,7 +11,7 @@ class Point {
         this.y = y;
     }
 
-    toString = () => `(${this.x}, ${this.y}`
+    toString = () => `(${this.x}, ${this.y})`
 }
 
 export default Point;
