@@ -17,6 +17,14 @@ module.exports = {
             {
                 test: path.resolve(__dirname, "..", "src"),
                 loader: "babel-loader"
+            },
+            {
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+                loader: "file"
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css", "sass"]
             }
         ]
     }
