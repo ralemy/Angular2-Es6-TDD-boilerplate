@@ -1,17 +1,21 @@
 "use strict";
 import path from "path";
+import HtmlPlugin from "html-webpack-plugin";
 import config from "./config";
 
-module.exports = {
+let packConfig = {
     entry: {
         app: path.resolve(config.js.target, config.js.rootFile)
     },
     output: {
-        path: path.resolve(__dirname, "..", "dist"),
-        publicPath: "../dist/",
+        path: path.resolve("..", "dist"),
+        publicPath: "/assets/",
         filename: "[name].bundle.js",
         chunkFilename: "[id].bundle.js"
     },
+    plugins:[
+        new HtmlPlugin()
+    ],
     module: {
         loaders: [
             {
@@ -29,3 +33,11 @@ module.exports = {
         ]
     }
 };
+
+export default packConfig
+export function serverConfig(){
+    let cfg = Object.create(packConfig);
+    cfg.devtool = "eval";
+    cfg.debug = true;
+    return cfg;
+}

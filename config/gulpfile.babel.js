@@ -6,6 +6,7 @@ import cleanTask from "./gulp_tasks/clean";
 import babelTask from "./gulp_tasks/babel";
 import webpackTask from "./gulp_tasks/webpack";
 import unitTests from "./gulp_tasks/mochaTests";
+import serve from "./gulp_tasks/serve";
 
 gulp.task("clean",cleanTask());
 
@@ -17,3 +18,4 @@ gulp.task("test", gulpSequence("clean","babel", unitTests(gulp)));
 
 gulp.task("build",gulpSequence("test","webpack"));
 
+gulp.task("serve",["build"],serve());
