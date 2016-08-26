@@ -1,4 +1,4 @@
-import "../../scss/main.scss";
+import "../scss/main.scss";
 import "es6-shim";
 import "es6-promise";
 import "reflect-metadata";
