@@ -10,12 +10,10 @@ import serve from "./gulp_tasks/serve";
 
 gulp.task("clean",cleanTask());
 
-gulp.task("babel", babelTask(gulp));
+gulp.task("webpack",["clean"],webpackTask());
 
-gulp.task("webpack",webpackTask());
+gulp.task("test", ["webpack"],unitTests(gulp));
 
-gulp.task("test", gulpSequence("clean","babel", unitTests(gulp)));
-
-gulp.task("build",gulpSequence("test","webpack"));
+gulp.task("build",["test"],()=>true);
 
 gulp.task("serve",["build"],serve());

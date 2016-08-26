@@ -5,7 +5,7 @@ import config from "./config";
 
 let packConfig = {
     entry: {
-        app: path.resolve(config.js.target, config.js.rootFile)
+        app: path.resolve(config.js.rootFile)
     },
     output: {
         path: config.build.path,
@@ -21,8 +21,12 @@ let packConfig = {
     module: {
         loaders: [
             {
-                test: config.js.babel,
-                loader: "babel-loader"
+                test: /\.js$/,
+                exclude:/(node_modules|bower_components)/,
+                loader: "babel",
+                query:{
+                    presets:["es2015", "angular2"]
+                }
             },
             {
                 test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,

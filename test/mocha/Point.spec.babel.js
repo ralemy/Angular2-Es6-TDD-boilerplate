@@ -5,7 +5,7 @@
 
 import chai from "chai";
 import chaiAsPromised from "chai-as-promised";
-import Point from "../../target/js/Point";
+import Point from "../../src/es6/Point";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect,
