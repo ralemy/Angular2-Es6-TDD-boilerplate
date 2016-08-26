@@ -3,9 +3,9 @@
  * Sample ES6 script to be transformed to JS using Babel
  */
 
-require(".././main.scss");
+require("../scss/main.scss");
 
 import Point from "./Point";
-var body = document.querySelector("div#contents");
-body.textContent = `Good Point ${new Point(1,23)}`;
+const body = document.querySelector("div#contents");
+body.textContent = `Good Point ${new Point(1, 23)}`;
 

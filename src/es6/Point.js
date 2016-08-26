@@ -3,12 +3,11 @@
  * Sample class exporting file
  */
 
-"use strict";
-
 class Point {
     constructor(x, y) {
         this.x = x;
         this.y = y;
+        this.name = "Point";
     }
 
     toString = () => `(${this.x}, ${this.y})`

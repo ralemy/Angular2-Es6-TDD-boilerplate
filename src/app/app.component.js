@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from "@angular/core";
 import template from "./app.component.pug";
 
 @Component({
-    selector: 'my-app',
+    selector: "my-app",
     template: template()
 })
-export class AppComponent { }
-
-console.log("jumbo");
+export class AppComponent {
+}

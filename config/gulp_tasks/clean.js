@@ -1,6 +1,5 @@
 "use strict";
 import del from "del";
-import path from "path";
 import config from "../config";
 
 export default function () {
