@@ -3,13 +3,16 @@ import path from "path";
 export default {
     build: {
         destination: [path.resolve(__dirname, "..", "dist", "**"),
-            path.resolve(__dirname, "..", "target", "**")]
+            path.resolve(__dirname, "..", "target", "**")],
+        path: path.resolve(__dirname,"..","dist")
 
     },
     js: {
-        src: path.resolve(__dirname, "..", "src", "es6", "*.js"),
+        src: path.resolve(__dirname, "..", "src", "app", "*.js"),
+        babel: path.resolve(__dirname,"..","src"),
         target: path.resolve(__dirname, "..", "target", "js"),
         test: path.resolve(__dirname,"..","test","mocha","*.spec.babel.js"),
-        rootFile: "boot.js"
+        rootFile: "main.js",
+        rootPage: path.resolve(__dirname,"..","src","app","index.pug")
     }
 };

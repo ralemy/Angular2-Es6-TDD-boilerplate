@@ -8,20 +8,20 @@ let packConfig = {
         app: path.resolve(config.js.target, config.js.rootFile)
     },
     output: {
-        path: path.resolve("..", "dist"),
+        path: config.build.path,
         publicPath: "/assets/",
         filename: "[name].bundle.js",
         chunkFilename: "[id].bundle.js"
     },
     plugins:[
         new HtmlPlugin({
-            template:path.resolve(__dirname,"..","src","pug","index.pug")
+            template: config.js.rootPage
         })
     ],
     module: {
         loaders: [
             {
-                test: path.resolve(__dirname, "..", "src"),
+                test: config.js.babel,
                 loader: "babel-loader"
             },
             {

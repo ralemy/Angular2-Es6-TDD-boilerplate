@@ -3,7 +3,7 @@
  * Sample ES6 script to be transformed to JS using Babel
  */
 
-require("../../src/scss/main.scss");
+require(".././main.scss");
 
 import Point from "./Point";
 var body = document.querySelector("div#contents");
