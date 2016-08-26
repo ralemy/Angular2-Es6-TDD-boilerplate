@@ -6,4 +6,6 @@ import template from "./app.component.pug";
     template: template()
 })
 export class AppComponent {
+    title = "Tour of Heros";
+    hero = "Windstrom";
 }

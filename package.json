@@ -39,8 +39,6 @@
     "gulp-sequence": "^0.4.5",
     "gutil": "^1.6.4",
     "html-webpack-plugin": "^2.22.0",
-    "jade": "^1.11.0",
-    "jade-loader": "^0.8.0",
     "jasmine-core": "^2.4.1",
     "karma": "^1.2.0",
     "karma-babel-preprocessor": "^6.0.1",
@@ -53,11 +51,11 @@
     "pug-loader": "^2.3.0",
     "reflect-metadata": "^0.1.8",
     "run-sequence": "^1.2.2",
-    "rxjs": "^5.0.0-beta.6",
+    "rxjs": "5.0.0-beta.6",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.0",
-    "zone.js": "^0.6.17"
+    "zone.js": "0.6.13"
   }
 }

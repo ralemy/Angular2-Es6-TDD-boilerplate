@@ -38,7 +38,7 @@ let packConfig = {
             },
             {
                 test: /\.pug$/,
-                loader: 'jade'
+                loader: 'pug'
             },
         ]
     }

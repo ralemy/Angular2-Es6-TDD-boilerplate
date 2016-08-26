@@ -10,20 +10,20 @@ import "es6-promise";
 import "reflect-metadata";
 
 import "zone.js/dist/zone";
+import "zone.js/dist/long-stack-trace-zone";
+import "zone.js/dist/jasmine-patch";
 import "zone.js/dist/async-test";
 import "zone.js/dist/fake-async-test";
 import "zone.js/dist/sync-test";
+import "zone.js/dist/proxy-zone";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-import {
-    TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS
-} from '@angular/platform-browser-dynamic/testing';
-import { setBaseTestProviders, addProviders, inject } from '@angular/core/testing';
 
-setBaseTestProviders(TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
+import {TestBed} from "@angular/core/testing";
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angular/platform-browser-dynamic/testing";
 
-Object.assign(global, { addProviders, inject });
+TestBed.initTestEnvironment(BrowserDynamicTestingModule,platformBrowserDynamicTesting());
 
 let testContext = require.context('../src', true, /\.spec\.js/);
 testContext.keys().forEach(testContext);
