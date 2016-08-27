@@ -3,19 +3,44 @@
  * Config file for karma tests
  */
 
-import path from "path";
-import webpackConfig from "./webpack.config"
 import webpack from "webpack";
+import config from "./config";
 
-webpackConfig.plugins = [
-    new webpack.DefinePlugin({
-        ENVIRONMENT: JSON.stringify('test')
-    })
-];
-webpackConfig.devtool = 'inline-cheap-source-map';
+let packConfig = {
+    entry: {},
+    output: {},
+    plugins:[
+        new webpack.DefinePlugin({
+            ENVIRONMENT: JSON.stringify('test')
+        })
+    ],
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude:/(node_modules|bower_components)/,
+                loader: "babel",
+                query:{
+                    presets:["es2015", "angular2"]
+                }
+            },
+            {
+                test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+                loader: "file"
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css", "sass"]
+            },
+            {
+                test: /\.pug$/,
+                loader: 'pug-html-loader'
+            },
+        ]
+    },
+    devtool : 'inline-cheap-source-map'
+};
 
-webpackConfig.entry = {};
-webpackConfig.output={};
 
 module.exports = function (config) {
     config.set({
@@ -29,7 +54,7 @@ module.exports = function (config) {
         preprocessors: {
             "./karma.shim.js":["webpack"]
         },
-        webpack: webpackConfig,
+        webpack: packConfig,
 
         webpackServer: {noInfo: true},
 

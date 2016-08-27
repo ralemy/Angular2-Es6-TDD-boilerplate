@@ -1,5 +1,6 @@
 "use strict";
 import path from "path";
+import webpack from "webpack";
 import HtmlPlugin from "html-webpack-plugin";
 import config from "./config";
 
@@ -38,7 +39,7 @@ let packConfig = {
             },
             {
                 test: /\.pug$/,
-                loader: 'pug'
+                loader: 'pug-html-loader'
             },
         ]
     }
@@ -49,5 +50,19 @@ export function serverConfig(){
     let cfg = Object.create(packConfig);
     cfg.devtool = "eval";
     cfg.debug = true;
+    return cfg;
+}
+
+export function testConfig(){
+    let cfg = Object.create(packConfig);
+    cfg.plugins = [
+        new webpack.DefinePlugin({
+            ENVIRONMENT: JSON.stringify('test')
+        })
+    ];
+    cfg.devtool = 'inline-cheap-source-map';
+
+    cfg.entry = {};
+    cfg.output={};
     return cfg;
 }

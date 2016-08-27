@@ -39,10 +39,10 @@ describe("App Component", function () {
     }));
 
     it("Should have two child elements, h1 and h2, with the title and hero name", async(()=> {
+        this.fixture.detectChanges();
         this.fixture.whenStable().then(()=> {
             const element = this.fixture.nativeElement,
                 component = this.fixture.componentInstance;
-            this.fixture.detectChanges();
 
             expect(element.children.length).toEqual(4,
                 "Should have at least two children");
@@ -56,10 +56,20 @@ describe("App Component", function () {
                 "Second element is the header for hero details");
             expect(element.children[2].textContent).toMatch(new RegExp(`id:\\s*${component.hero.id}`),
                 "Third element should contain hero id");
-            expect(element.children[3].textContent).toMatch(new RegExp(`name:\\s*${component.hero.name}`),
-                "Fourth element should contain hero name");
         });
     }));
+
+    it("Should have an input to change the Hero's name",async(()=> {
+        this.fixture.detectChanges();
+        this.fixture.whenStable().then(()=>{
+            this.nameInput = this.fixture.nativeElement.children[3].querySelector("input");
+            expect(this.nameInput).toBeTruthy(
+                "There should be an input element for hero's name");
+            expect(this.nameInput.value).toEqual(this.fixture.componentInstance.hero.name,
+                "The input element value should be the hero's name");
+        });
+    }));
+
 });
 
 describe("Hero Class", function () {

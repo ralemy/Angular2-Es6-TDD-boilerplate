@@ -11,7 +11,7 @@ export class Hero {
 
 @Component({
     selector: "my-app",
-    template: template()
+    template: template
 })
 export class AppComponent {
     constructor() {
