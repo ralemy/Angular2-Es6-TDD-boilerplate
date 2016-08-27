@@ -24,6 +24,7 @@ describe("App Component", function () {
         });
 
         this.fixture = TestBed.createComponent(AppComponent);
+        this.fixture.detectChanges();
     });
 
     it("Should have a title", async(()=> {
@@ -39,7 +40,6 @@ describe("App Component", function () {
     }));
 
     it("Should have two child elements, h1 and h2, with the title and hero name", async(()=> {
-        this.fixture.detectChanges();
         this.fixture.whenStable().then(()=> {
             const element = this.fixture.nativeElement,
                 component = this.fixture.componentInstance;
@@ -59,9 +59,8 @@ describe("App Component", function () {
         });
     }));
 
-    it("Should have an input to change the Hero's name",async(()=> {
-        this.fixture.detectChanges();
-        this.fixture.whenStable().then(()=>{
+    it("Should have an input to change the Hero's name", async(()=> {
+        this.fixture.whenStable().then(()=> {
             this.nameInput = this.fixture.nativeElement.children[3].querySelector("input");
             expect(this.nameInput).toBeTruthy(
                 "There should be an input element for hero's name");
@@ -70,13 +69,20 @@ describe("App Component", function () {
         });
     }));
 
+    it("Should have an array of heros", async(()=>
+        this.fixture.whenStable().then(()=>{
+            const cmp = this.fixture.componentInstance;
+            expect(cmp.heroes).toBeDefined("component should have a list of heroes");
+            expect(cmp.heroes.length).toEqual(10, "heroes list should have 10 members");
+            cmp.heroes.map((h,i)=>{expect(h instanceof Hero).toBeTruthy(`member ${i} is not a Hero instance. ${h}`)});
+        })));
 });
 
 describe("Hero Class", function () {
     "use strict";
     it("Should have an id and a name", ()=> {
-        const hero = new Hero(1,"someHero");
+        const hero = new Hero(1, "someHero");
         expect(hero.id).toEqual(1, "hero id should be 1");
-        expect(hero.name).toEqual("someHero","hero name should be someHero");
+        expect(hero.name).toEqual("someHero", "hero name should be someHero");
     });
 });
