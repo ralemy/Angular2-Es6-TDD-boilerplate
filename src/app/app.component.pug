@@ -1,7 +1,7 @@
 h1 {{title}}
 h3 My Heroes
 ul.heroes
-    li( *ngFor="let hero of heroes")
+    li( *ngFor="let hero of heroes", (click)="onSelect(hero)")
         span.badge {{hero.id}}
         |   {{hero.name}}
 h2 {{hero.name}} details!

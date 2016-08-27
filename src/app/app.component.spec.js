@@ -96,6 +96,7 @@ describe("App Component", function () {
                     .toMatch(cmp.heroes[i].name, `hero ${i} has wrong name displayed`);
             });
         })));
+
     it("should have correct styling of hero items", async(()=>
         this.fixture.whenStable().then(()=> {
             const hero = this.fixture.nativeElement.querySelector("ul.heroes>li");
@@ -104,6 +105,25 @@ describe("App Component", function () {
             expect(styles["cursor"]).toEqual("pointer", "cursor should be pointer on hero");
             expect(styles["borderRadius"]).toEqual("4px", "borderRadius should be 4px");
         })));
+
+    it("should have a click handler for hero items",async(()=>
+        this.fixture.whenStable().then(()=>{
+            const cmp = this.fixture.componentInstance;
+            expect(cmp.onSelect).toBeDefined("should have a click handler for heros");
+            spyOn(cmp,"onSelect").and.callThrough();
+            this.fixture.nativeElement.querySelectorAll("ul.heroes li")[5].click();
+            expect(cmp.onSelect).toHaveBeenCalledWith(cmp.heroes[5]);
+            expect(cmp.hero).toEqual(cmp.heroes[5], "click on hero should change hero");
+            this.fixture.detectChanges();
+            return this.fixture.whenStable();
+        }).then(()=>{
+            expect(this.fixture.nativeElement.querySelector("h2").textContent)
+                .toMatch(this.fixture.componentInstance.heroes[5].name,
+                "changing hero should change the detail section");
+        })
+    ));
+
+
 });
 
 describe("Hero Class", function () {

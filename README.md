@@ -27,4 +27,7 @@ To run protractor end-to-end tests, first serve your application with
 `npm run gulp protractor`. write your end-to-end tests in `src/e2e` 
 directory.
 
+If you go back in the commit history you will see how features were 
+added step by step.
+
 

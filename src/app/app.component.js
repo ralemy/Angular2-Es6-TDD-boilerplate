@@ -38,5 +38,9 @@ export class AppComponent {
     initHeroes(heroes) {
         return heroes.map((h)=> new Hero(h.id, h.name));
     }
+
+    onSelect(hero) {
+        this.hero = hero;
+    }
 }
 
