@@ -38,10 +38,6 @@ let packConfig = {
                 loaders: ["style", "css", "sass"]
             },
             {
-                test: /\.css$/,
-                loaders: ["style", "css"]
-            },
-            {
                 test: /\.pug$/,
                 loader: 'pug-html-loader'
             },

@@ -35,10 +35,11 @@ describe("App Component", function () {
 
     it("Should have a hero", async(()=> {
         this.fixture.whenStable().then(()=> {
-            expect(this.fixture.componentInstance.hero).toBeDefined();
+            expect(this.fixture.componentInstance.selectedHero).toBeNull();
         });
     }));
 
+/*there is no longer a defined hero, so this test is fast becoming useless and will be removed in next commit
     it("Should have two child elements, h1 and h2, with the title and hero name", async(()=> {
         this.fixture.whenStable().then(()=> {
             const element = this.fixture.nativeElement,
@@ -68,6 +69,7 @@ describe("App Component", function () {
                 "The input element value should be the hero's name");
         });
     }));
+ */
 
     it("Should have an array of heros", async(()=>
         this.fixture.whenStable().then(()=> {
@@ -109,19 +111,35 @@ describe("App Component", function () {
     it("should have a click handler for hero items",async(()=>
         this.fixture.whenStable().then(()=>{
             const cmp = this.fixture.componentInstance;
-            expect(cmp.onSelect).toBeDefined("should have a click handler for heros");
+            expect(cmp.onSelect)
+                .toBeDefined("should have a click handler for heros");
+            expect(this.fixture.nativeElement.querySelector("input.heroName"))
+                .toBeNull("should not show the hero details when no hero has been selected");
+            expect(this.fixture.nativeElement.querySelector("ul.heroes li.selected"))
+                .toBeNull("Should not have any selected heroes at start");
+
             spyOn(cmp,"onSelect").and.callThrough();
             this.fixture.nativeElement.querySelectorAll("ul.heroes li")[5].click();
-            expect(cmp.onSelect).toHaveBeenCalledWith(cmp.heroes[5]);
-            expect(cmp.hero).toEqual(cmp.heroes[5], "click on hero should change hero");
+
+            expect(cmp.onSelect)
+                .toHaveBeenCalledWith(cmp.heroes[5]);
+            expect(cmp.selectedHero)
+                .toEqual(cmp.heroes[5], "click on hero should change hero");
+
             this.fixture.detectChanges();
             return this.fixture.whenStable();
         }).then(()=>{
             expect(this.fixture.nativeElement.querySelector("h2").textContent)
                 .toMatch(this.fixture.componentInstance.heroes[5].name,
                 "changing hero should change the detail section");
+
+            expect(this.fixture.nativeElement.querySelector("input.heroName").value)
+                .toEqual(this.fixture.componentInstance.heroes[5].name,
+                "input element should contain the name of selected hero");
+
         })
     ));
+
 
 
 });

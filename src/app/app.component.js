@@ -31,7 +31,7 @@ export class Hero {
 export class AppComponent {
     constructor() {
         this.title = "Tour of Heros";
-        this.hero = new Hero(1, "Windstrom");
+        this.selectedHero = null;
         this.heroes = this.initHeroes(Heroes);
     }
 
@@ -40,7 +40,7 @@ export class AppComponent {
     }
 
     onSelect(hero) {
-        this.hero = hero;
+        this.selectedHero = hero;
     }
 }
 
