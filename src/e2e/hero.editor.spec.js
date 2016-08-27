@@ -3,12 +3,28 @@
  * end to end testing for hero editor
  */
 
-describe("Hero Editor",()=> {
+describe("Hero Editor", ()=> {
     "use strict";
-    it("Should be at /",() => {
-        return browser.get("/").then(()=>browser.getTitle())
-            .then((title)=>{
+
+    beforeEach(()=>browser.get("/"));
+
+    it("Should be at /", () =>
+        browser.getTitle()
+            .then((title)=> {
                 expect(title).toEqual("this came from pug watched!");
-            });
-    })
+            })
+    );
+
+    it("Should have an input for hero's name", ()=>
+        expect(element(by.css("input#heroName")).isPresent()).toBeTruthy("Input element is not present")
+    );
+
+    it("Should change title with changing of hero's name", ()=> {
+        const input = element(by.css("input#heroName"));
+        input.clear()
+            .then(()=> input.sendKeys("Some New Hero Name"))
+            .then(()=>element(by.css("h2")).getText())
+            .then((newName)=> expect(newName).toMatch(/^\s*Some New Hero Name/))
+    });
+
 });
