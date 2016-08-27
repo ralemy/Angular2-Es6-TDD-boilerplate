@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import template from "./app.component.pug";
+import styles from "raw-loader!./app.component.css";
 
 const Heroes = [
     {id: 11, name: "Mr. Nice"},
@@ -23,7 +24,9 @@ export class Hero {
 
 @Component({
     selector: "my-app",
-    template: template
+    template: template,
+    styles: [styles]
+
 })
 export class AppComponent {
     constructor() {

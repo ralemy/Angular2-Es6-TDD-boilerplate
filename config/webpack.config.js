@@ -14,7 +14,7 @@ let packConfig = {
         filename: "[name].bundle.js",
         chunkFilename: "[id].bundle.js"
     },
-    plugins:[
+    plugins: [
         new HtmlPlugin({
             template: config.js.rootPage
         })
@@ -23,10 +23,10 @@ let packConfig = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude:/(node_modules|bower_components)/,
+                exclude: /(node_modules|bower_components)/,
                 loader: "babel",
-                query:{
-                    presets:["es2015", "angular2"]
+                query: {
+                    presets: ["es2015", "angular2"]
                 }
             },
             {
@@ -38,6 +38,10 @@ let packConfig = {
                 loaders: ["style", "css", "sass"]
             },
             {
+                test: /\.css$/,
+                loaders: ["style", "css"]
+            },
+            {
                 test: /\.pug$/,
                 loader: 'pug-html-loader'
             },
@@ -46,14 +50,14 @@ let packConfig = {
 };
 
 export default packConfig
-export function serverConfig(){
+export function serverConfig() {
     let cfg = Object.create(packConfig);
     cfg.devtool = "eval";
     cfg.debug = true;
     return cfg;
 }
 
-export function testConfig(){
+export function testConfig() {
     let cfg = Object.create(packConfig);
     cfg.plugins = [
         new webpack.DefinePlugin({
@@ -63,6 +67,6 @@ export function testConfig(){
     cfg.devtool = 'inline-cheap-source-map';
 
     cfg.entry = {};
-    cfg.output={};
+    cfg.output = {};
     return cfg;
 }
