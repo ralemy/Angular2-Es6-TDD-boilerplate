@@ -25,5 +25,5 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting} from "@angu
 
 TestBed.initTestEnvironment(BrowserDynamicTestingModule,platformBrowserDynamicTesting());
 
-let testContext = require.context('../src', true, /\.spec\.js/);
+let testContext = require.context('../src/app', true, /\.spec\.js/);
 testContext.keys().forEach(testContext);
