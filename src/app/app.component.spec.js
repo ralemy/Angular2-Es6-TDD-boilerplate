@@ -9,12 +9,9 @@ import {
     async
 } from "@angular/core/testing";
 
-import {provide} from "@angular/core";
-
 import {AppComponent, Hero} from "./app.component";
 import {AppModule} from "./app.module";
 
-let fixture = null;
 describe("App Component", function () {
     "use strict";
 
