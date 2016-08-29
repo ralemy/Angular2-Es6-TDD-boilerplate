@@ -1,3 +1,9 @@
-/**
- * Created by ralemy on 8/28/16.
- */
+div(*ngIf="hero")
+    h2 {{hero.name}} details!
+    div
+        label id:
+        |    {{hero.id}}
+    div
+        label name:
+        input.heroName([(ngModel)]="hero.name" type="text" placeholder="name" )
+

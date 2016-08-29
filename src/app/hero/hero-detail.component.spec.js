@@ -10,17 +10,32 @@ import {
 } from "@angular/core/testing";
 
 import {AppModule} from "../app.module";
-import {HeroDetail} from "./hero-detail.component";
+import {HeroDetailComponent} from "./hero-detail.component";
 
-describe("Hero Detail",function(){
+
+describe("Hero Detail", function () {
     "use strict";
     beforeEach(()=> {
         TestBed.configureTestingModule({
             imports: [AppModule]
         });
 
-        this.fixture = TestBed.createComponent(HeroDetail);
+        this.fixture = TestBed.createComponent(HeroDetailComponent);
         this.fixture.detectChanges();
     });
-    it("")
+
+    it("Should be a component", async(()=>
+        this.fixture.whenStable().then(()=> {
+            expect(this.fixture.componentInstance).toBeDefined();
+        })));
+
+    it("Should have the detail template", async(() =>
+        this.fixture.whenStable().then(()=> {
+            expect(this.fixture.nativeElement.children.length).toEqual(0);
+        })));
+
+    it("Should have a hero property", async(()=>
+        this.fixture.whenStable().then(()=> {
+            expect(this.fixture.componentInstance.hero).toBeDefined();
+        })))
 });

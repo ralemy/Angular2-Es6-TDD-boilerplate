@@ -4,12 +4,4 @@ ul.heroes
     li([class.selected]="hero === selectedHero", *ngFor="let hero of heroes", (click)="onSelect(hero)")
         span.badge {{hero.id}}
         |   {{hero.name}}
-div(*ngIf="selectedHero")
-    h2 {{selectedHero.name}} details!
-    div
-        label id:
-        |    {{selectedHero.id}}
-    div
-        label name:
-        input.heroName([(ngModel)]="selectedHero.name" type="text" placeholder="name" )
-
+my-hero-detail([hero]="selectedHero")
