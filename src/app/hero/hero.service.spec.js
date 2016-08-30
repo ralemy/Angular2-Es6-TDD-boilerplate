@@ -3,28 +3,35 @@
  * Testing Hero service, Section 5 of Angular 2 tutorial.
  */
 
-import {
-    TestBed,
-    ComponentFixture,
-    async
-} from "@angular/core/testing";
+import {Inject, Injectable, ReflectiveInjector} from "@angular/core";
 
 import {HeroService} from "./hero.service";
 import {Heroes} from "./mock-data";
 import Hero from "./hero";
 
+class UsefulService {
+    constructor(){
+        this.somevalue = "service1";
+    }
+}
+
+class NeedsService {
+    constructor(@Inject("UsefulService") service){this.service = service;}
+}
+
+
 describe("Hero Service", function () {
     "use strict";
 
-    // beforeEach(()=> {
-    //     TestBed.configureTestingModule({
-    //         imports: [AppModule]
-    //     });
-    //     this.fixture.detectChanges();
-    // });
+    it("Should be able to see if a class is Injectable", () =>{
+        var injector = ReflectiveInjector.resolveAndCreate([{provide:"UsefulService", useClass:UsefulService},NeedsService]);
+        console.log("needs ", injector.get(NeedsService).service.somevalue);
+    });
 
     it("Should be an Injectable class with method getHeroes", ()=> {
         const service = new HeroService();
+        console.log(service.toString());
+        console.log(HeroService.toString());
         expect(service.getHeroes).toBeDefined();
     });
 
