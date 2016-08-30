@@ -9,11 +9,11 @@ import {
     async
 } from "@angular/core/testing";
 
-import {AppComponent} from "./app.component";
-import {AppModule} from "./app.module";
-import Hero from "./hero/hero";
+import {HeroComponent} from "./hero.component";
+import {AppModule} from "../app.module";
+import Hero from "./hero.model";
 
-describe("App Component", function () {
+describe("Hero Component", function () {
     "use strict";
 
     beforeEach(()=> {
@@ -21,7 +21,7 @@ describe("App Component", function () {
             imports: [AppModule]
         });
 
-        this.fixture = TestBed.createComponent(AppComponent);
+        this.fixture = TestBed.createComponent(HeroComponent);
         this.fixture.detectChanges();
     });
 

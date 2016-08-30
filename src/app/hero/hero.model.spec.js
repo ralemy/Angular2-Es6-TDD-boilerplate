@@ -3,7 +3,7 @@
  * Testing Hero class
  */
 
-import Hero from "./hero";
+import Hero from "./hero.model";
 
 describe("Hero Class", function () {
     "use strict";

@@ -7,32 +7,42 @@ import {Inject, Injectable, ReflectiveInjector} from "@angular/core";
 
 import {HeroService} from "./hero.service";
 import {Heroes} from "./mock-data";
-import Hero from "./hero";
+import Hero from "./hero.model";
 
 class UsefulService {
-    constructor(){
+    constructor() {
         this.somevalue = "service1";
     }
 }
 
 class NeedsService {
-    constructor(@Inject("UsefulService") service){this.service = service;}
+    constructor(@Inject("UsefulService") service) {
+        this.service = service;
+    }
 }
 
 
 describe("Hero Service", function () {
     "use strict";
 
-    it("Should be able to see if a class is Injectable", () =>{
-        var injector = ReflectiveInjector.resolveAndCreate([{provide:"UsefulService", useClass:UsefulService},NeedsService]);
-        console.log("needs ", injector.get(NeedsService).service.somevalue);
+    it("Should be able to see if a class is Injectable", () => {
+        const injector = ReflectiveInjector.resolveAndCreate([{
+            provide: "UsefulService",
+            useClass: UsefulService
+        }, NeedsService]);
+        expect(injector.get(NeedsService).service.somevalue).toEqual("service1");
     });
 
     it("Should be an Injectable class with method getHeroes", ()=> {
         const service = new HeroService();
-        console.log(service.toString());
-        console.log(HeroService.toString());
-        expect(service.getHeroes).toBeDefined();
+        service.hommer = "Simpson";
+        class Dependent {
+            constructor(@Inject("HeroService") heroService) {
+                this.heroService = heroService;
+            }
+        }
+        const injector = ReflectiveInjector.resolveAndCreate([{provide: "HeroService", useValue: service}, Dependent]);
+        expect(injector.get(Dependent).heroService.hommer).toEqual("Simpson");
     });
 
     it("Should have a source of mocks for Heroes", ()=> {

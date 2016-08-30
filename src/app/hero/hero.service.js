@@ -4,7 +4,7 @@
  */
 
 import {Injectable} from "@angular/core";
-import Hero from "./hero";
+import Hero from "./hero.model";
 import {Heroes} from "./mock-data";
 
 @Injectable()
