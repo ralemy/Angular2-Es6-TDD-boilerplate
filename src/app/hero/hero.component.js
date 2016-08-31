@@ -4,7 +4,7 @@ import styles from "raw-loader!./hero.component.css";
 import {HeroService} from "./hero.service";
 
 @Component({
-    selector: "my-app",
+    selector: "my-heroes",
     template: template,
     styles: [styles],
     providers: [HeroService]
